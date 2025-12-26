@@ -1,32 +1,19 @@
-function checkLogin() {
-    const token = localStorage.getItem("token");
-    if (!token) {
-        console.log("Not logged in");
-    } else {
-    }
-}
-
 async function loadPosts() {
-    const token = localStorage.getItem("token");
-    const response = await fetch("https://tarmeezacademy.com/api/v1/posts?limit=20", {
-        headers: {
-            "Authorization": `Bearer ${token || ""}`
-        }
-    });
-
+    const response = await fetch("https://tarmeezacademy.com/api/v1/posts?limit=20");
     const data = await response.json();
+
     const posts = data.data;
+    document.getElementById("content").innerHTML = "";
 
-    const contentDiv = document.getElementById("content");
-    contentDiv.innerHTML = "";
+    for (post of posts) {
+        console.log(posts);
 
-    for (const post of posts) {
         const author = post.author;
-        const content = `
+        let content = `
             <div class="posts">
                 <div class="pfp-box">
                     <div>
-                        <img class="pfp" src="${author.profile_image}">
+                        <img class="pfp" src=${author.profile_image}>
                     </div>
                     <div>
                         <span class="name">${author.name}</span>
@@ -53,9 +40,8 @@ async function loadPosts() {
                 </div>
             </div>
         `;
-        contentDiv.innerHTML += content;
+        document.getElementById("content").innerHTML += content;
     }
 }
 
-checkLogin();
 loadPosts();
