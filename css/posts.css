@@ -1,0 +1,245 @@
+#content{
+    margin: 0 auto;
+    width: 640px;
+}
+
+#uploud-posts{
+    margin: 150px auto 0 auto;
+    width: 640px;
+
+}
+
+.posts{
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    border-radius: 16px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pfp-box{
+    display: flex;
+    align-items: center;
+    padding: 36px;
+    gap: 12px;
+}
+
+.pfp-box .name{
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--htext-color);
+}
+
+.pfp-box .user{
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--text-secondary)
+}
+
+.pfp{
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+}
+
+.title{
+    text-align: center;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--text-color);
+}
+
+.pic{ 
+    margin-top: 16px;
+    width: 640px;
+    height: auto;
+}
+
+.react{
+    padding: 36px 0 16px 36px;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.react .likes-btn,
+.react .comments-btn,
+.react .shares-btn{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.react button{
+    border: none;
+    background: none;
+}
+
+.react img{
+    width: 24px;
+    height: 24px;
+}
+/****************************/ 
+
+.add-post{
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    border-radius: 16px;
+    margin-top: 24px;
+    padding: 24px 24px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: start;
+}
+
+.post-box{
+    display: flex;
+    flex-direction: column;
+    gap: 21.6px;
+}
+
+.post-box #post-textarea{
+    width: 528px;
+    height: 99.2px;
+    border-radius: 14px;
+    border: 1.6px solid #E5E7EB;
+    padding: 12px;
+    resize: none;
+    font-size: 16px
+}
+
+textarea::placeholder{
+    font-family: "Arimo" , sans-serif;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.uploud-box{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-btn{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px 10px 16px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--primary-color);
+    box-shadow: var(--box-shadow);
+    opacity: 50%;
+    color: white;
+}
+
+/****************************/ 
+
+.comments-container{
+    width: 100%;
+    height: auto;
+    padding: 0 36px 16px 36px;
+}
+.comments{
+    display: flex;
+    flex-direction: column;
+    border-top: 0.8px solid #E5E7EB;
+    padding: 6px;
+    gap: 16px;
+}
+
+.comments-pfp{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.write-comment{
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.write-comment input{
+    padding: 8px 16px;
+    border-radius: 50px;
+    width: 100%;
+    border: 1px solid #E5E7EB;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+input::placeholder{
+    font-family: "Arimo" , sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.read-comments{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.read-comment{
+    display: flex;
+    padding: 12px 12px 0 12px;
+    gap: 12px;
+    border-radius: 12px;
+}
+
+.read-comment .read-text{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.read-text .text-top{
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px 0 16px;
+    gap: 4px;
+    background: #F3F4F6;
+    height: auto;
+    width: 524px;
+    border-radius: 16px;
+}
+
+.text-top p{
+    color: var(--htext-color);
+}
+
+.text-top span{
+    color: var(--text-secondary);
+}
+
+.text-bottom{
+    display: flex;
+    padding-left: 16px;
+    gap:16px;
+}
+
+.text-bottom #message-date{
+    color: #6A7282;
+    font-size: 12px;
+}
+
+.text-bottom #message-likes{
+    display: flex;
+    gap: 4px;
+    color: #6A7282;
+    font-size: 12px;
+}
+
+.likes-btn #likes-span{
+    color: #FB2C36;
+}

@@ -1,0 +1,147 @@
+.blured-imgs{
+    position: fixed;
+    z-index: -1000;
+}
+.image1{
+    top: 450px;
+    left: 750px;
+}
+.image2{
+    bottom: 160px;
+    left: 400px;
+}
+
+.signup-containor{
+    display: flex;
+    margin: 0 auto;
+    width: 1155px;
+    height: 110vh;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.signup-text{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.signup-header{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+}
+
+.signup-header span{
+   font-size: 36px; 
+}
+
+.signup-text h2{
+    color: var(--htext-color);
+    font-size: 48px;
+    font-weight: 400;
+}
+
+.signup-text p{
+    color: var(--text-color);
+    font-size: 20px;
+    line-height: 28px;
+}
+
+.signup-containor .form-containor{
+    width: 552px;
+    height: 788px;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 25px 50px -12px #00000040;
+    background-color: white;
+    padding: 64px;
+    gap: 36px;
+}
+
+.form-containor .form-text{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-text h2{
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: 400;
+    color: var(--htext-color);
+}
+
+.form-text p{
+    font-size: 16px;
+    line-height: 24px;
+    color: #4A5565;
+}
+
+.form-containor form{
+    display: flex;
+    flex-direction: column;
+    gap:24px;
+}
+
+.form-containor form label{
+    color: var(--text-color);
+    font-size: 14px;
+    line-height: 20px;
+    gap: 8px;
+}
+
+.input-box{
+    position: relative;
+}
+
+.input-box input{
+    border: 2px solid #E5E7EB;
+    border-radius: 14px;
+    padding: 12px 32px 12px 16px;
+    width: 100%;    
+    top: 10px;
+}
+
+.input-box img{
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+
+.form-containor form button{
+    background: var(--primary-color);
+    box-shadow: var(--box-shadow);
+    color: white;
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 16px;
+    line-height: 16px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.form-containor form button:hover{
+    background: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+.account-status{
+    text-align: center;
+}
+
+.account-status a{
+    color: #9810FA;
+    text-decoration: none;
+}
+
+.account-status a:hover{
+    color: hsl(275, 96%, 32%);
+    border-bottom: 2px solid hsl(275, 96%, 32%);;
+    border-radius: 5px;
+    transform: scale(1.1);
+}
+
