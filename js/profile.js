@@ -158,7 +158,7 @@ async function loadUserPosts(userId, authToken, container, currentUser) {
                 ${postImage}
                 <div class="react">
                     <div class="likes-btn">
-                        <img src="images/after-login/homepage/like-red.svg" alt="heart" class="react-icon">
+                        <img src="images/after-login/homepage/like.svg" alt="heart" class="react-icon">
                     </div>
                     <button class="comments-btn">
                         <img src="images/after-login/homepage/comment.svg" alt="comment" class="react-icon">
