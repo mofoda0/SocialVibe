@@ -127,17 +127,17 @@ async function loadUserPosts(userId, authToken, container, currentUser) {
                         
                     <div class="post-editor" style="display: none;">
                         <button class="edit-post">
-                            <img src="../images/home/edit-icon.svg">
+                            <img src="images/home/edit-icon.svg">
                             <span>Edit Post</span>
                         </button>
 
                         <button class="delete-post">
-                            <img src="../images/home/delete-icon.svg">
+                            <img src="images/home/delete-icon.svg">
                             <span>Delete Post</span>
                         </button>
 
                             <button class="share-post">
-                                <img src="../images/home/share-icon.svg">
+                                <img src="images/home/share-icon.svg">
                                 <span>Share</span>
                             </button>
                         </div>

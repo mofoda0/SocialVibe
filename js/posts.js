@@ -75,17 +75,17 @@ async function loadPosts() {
 
                         <div class="post-editor" style="display: none;">
                             <button class="edit-post">
-                                <img src="../images/home/edit-icon.svg">
+                                <img src="images/home/edit-icon.svg">
                                 <span>Edit Post</span>
                             </button>
 
                             <button class="delete-post">
-                                <img src="../images/home/delete-icon.svg">
+                                <img src="images/home/delete-icon.svg">
                                 <span>Delete Post</span>
                             </button>
 
                             <button class="share-post">
-                                <img src="../images/home/share-icon.svg">
+                                <img src="images/home/share-icon.svg">
                                 <span>Share</span>
                             </button>
                         </div>
@@ -240,7 +240,7 @@ function setupPostMenus() {
     const deleteBtn = editor.querySelector(".delete-post");
     deleteBtn.onclick = async () => {
       deleteBtn.innerHTML = `
-            <img src="../images/home/delete-icon.svg">
+            <img src="images/home/delete-icon.svg">
             <span>Deleting...</span>
         `;
       deleteBtn.disabled = true;
@@ -265,7 +265,7 @@ function setupPostMenus() {
         alert("Failed to delete post");
       } finally {
         deleteBtn.innerHTML = `
-                    <img src="../images/home/delete-icon.svg">
+                    <img src="images/home/delete-icon.svg">
                     <span>Delete Post</span>
                 `;
         deleteBtn.disabled = false;
