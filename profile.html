@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Vibe</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/posts.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="icon" href="images/home/logo.svg">
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo-containor">
+            <img src="images/home/logo.svg" alt="logo">
+            <span class="logo-color">SocialVibe</span>
+        </div>
+
+        <div class="btn-containor">
+            <button class="non-active navbar-btn" onclick="location.href='home.html'">
+                <img src="images/home/homeblack.svg" alt="Home icon">
+                <span>Home</span>
+            </button>
+
+            <button class="active navbar-btn" onclick="location.href='profile.html'">
+                <img src="images/after-login/navbar/profile.icon-white.svg" alt="Profile icon">
+                <span>Profile</span>
+            </button>
+
+            <button class="non-active notification-btn">
+                <img class="notification-dot" src="images/after-login/navbar/Navigation.svg">
+                <img class="notification-icon" src="images/after-login/navbar/notification-icon.svg" alt="notification icon">
+            </button>
+            
+            <div class="logout-profile">
+                <img id="user-profile" class="non-active" src="images/after-login/homepage/blank-profile.png" alt="user profile" onclick="location.href='profile.html'">
+                <button id="logout-btn" class="active navbar-btn" onclick="logout()">
+                    <img src="images/after-login/navbar/logout.svg" alt="Log out icon">
+                    <span>Log Out</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+  
+    <section id="app">
+        <div id="loading"></div>
+
+        <div id="profile-error"></div>
+
+        <div class="profile-container">
+            <div id="profile-background"></div>
+            <div id="profile">
+                <div id="profile-header">
+                    <img id="profile-image" src="images/after-login/homepage/blank-profile.png">
+                    <button id="profile-button" onclick="location.href='editprofile.html'">
+                        <img src="images/after-login/profile/edit-btn.svg">
+                    </button>
+                </div>
+
+                <div id="profile-center">
+                    <h1 id="profile-name">Demo User</h1>
+                    <p id="profile-username">@demo_user</p>
+                    <p id="profile-bio">Welcome to my profile!</p>
+                    <div id="created-at-container">
+                        <img src="images/after-login/profile/date-icon.svg">
+                        <span id="account-date">Joined in January 2024</span>
+                    </div>
+
+                    <div id="posts-count">
+                        <p id="counter">89</p>
+                        <span>Posts</span>
+                    </div>
+                </div>
+
+                <div id="profile-footer">
+                    <button id="edit-profile" onclick="location.href='editprofile.html'">Edit Profile</button>
+                    <button id="share-profile">Share Profile</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="media-container">
+            <div id="media-buttons">
+                <button id="posts-btn" class="media-btn">Posts</button>
+                <button class="media-btn">Media</button>
+                <button class="media-btn">Likes</button>
+            </div>
+        </div>
+
+        <div id="user-posts" class="posts upated-posts">
+
+            <!-- <div class="box-container">
+                <div class="pfp-box">
+                    <div>
+                        <img class="pfp" src="https://placehold.co/48" alt="pfp">
+                    </div>
+                    <div>
+                        <span class="name">Full Name</span>
+                        <p class="user">@Username<span class="guest-time"> • 2 hours ago</span></p>
+                    </div>
+                </div>
+
+                <button class="post-manage">
+                    <img src="images/after-login/homepage/manage-post.svg">
+                </button>
+            </div>
+
+            <p class="title">Amazing view from my last trip to the mountains! Nature always amazes me 🏔️</p>
+           
+            <img src="https://placehold.co/640x348" alt="user post" class="pic">
+            
+            <div class="react">
+                <div class="likes-btn">
+                    <img src="images/after-login/homepage/like.svg" alt="heart" class="react-icon">
+                </div>
+                <button class="comments-btn">
+                    <img src="images/after-login/homepage/comment.svg" alt="comment" class="react-icon">
+                    <span>3</span>
+                </button>
+                <button class="shares-btn">
+                    <img src="images/after-login/homepage/share.svg" alt="share" class="react-icon">
+                </button>
+            </div>
+            </div> -->
+
+        </div> 
+
+    </section>
+<script src="js/profile.js"></script>
+<script src="js/navbar.js"></script>
+<script src="js/login.js"></script>
+<script src="js/signup.js"></script>
+</body>
+</html>

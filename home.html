@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Vibe</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/posts.css">
+
+    <link rel="icon" href="images/home/logo.svg";>
+</head>
+<body>
+    <div id="logged-in-msg">
+        <p>Welcome Back!</p>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo-containor">
+            <img src="images/home/logo.svg" alt="logo">
+            <span class="logo-color">SocialVibe</span>
+        </div>
+        <div class="btn-containor">
+            <button class="active navbar-btn" onclick="location.href='index.html'">
+                <img src="images/home/homewhite.svg" alt="Home icon">
+                <span>Home</span>
+            </button>
+
+            <button class="non-active navbar-btn" onclick="location.href='profile.html'">
+                <img src="images/after-login/navbar/profile.icon.svg" alt="Profile icon" id="navbar-profile-icon">
+                <span>Profile</span>
+            </button>
+
+            <button class="non-active notification-btn">
+                <img class="notification-dot" src="images/after-login/navbar/Navigation.svg">
+                <img class="notification-icon" src="images/after-login/navbar/notification-icon.svg" alt="notification icon">
+            </button>
+            
+            <div class="logout-profile">
+                <img id="user-profile" class="non-active" src="images/after-login/homepage/blank-profile.png" alt="user profile" onclick="location.href='profile.html'">
+                <button id="logout-btn" class="active navbar-btn" onclick="logout()">
+                    <img src="images/after-login/navbar/logout.svg">
+                    <span>Log Out</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section id="uploud-posts">
+            <div class="add-post">
+
+            <img class="pfp" src="">
+
+            <div class="post-box">
+                <textarea id="post-textarea" placeholder="What's on your mind?"></textarea>
+
+                <div class="post-image">
+                    <div class="post-imgText">
+                        <p>Post Image</p>
+                        <span>(Optional)</span>
+                    </div>
+
+                    <div class="imageName-container">
+                        <p id="img-url">image.jpg</p>
+                        <img src="images/after-login/homepage/img-icon.svg">
+                    </div>
+
+                    <img id="img-preview" src="images/after-login/homepage/Image-(Post).svg">
+                </div>
+
+                <input type="file" id="post-file-input" style="display:none;" accept="image/*">
+
+                <div class="uploud-box">
+                    <button id="image-upload">
+                        <img src="images/after-login/homepage/img-iconPurblesvg.svg">
+                        <span>Add Image</span>
+                    </button>
+                    <button class="post-btn"> 
+                        <img src="images/after-login/homepage/post.svg" alt="post button">
+                        <span>Post</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="content" class="updated-content">
+        <div class="posts">
+            <!-- <div class="pfp-box">
+                <div>
+                    <img class="pfp" src="https://placehold.co/48" alt="pfp">
+                </div>
+                <div>
+                    <span class="name">Full Name</span>
+                    <p class="user">@Username<span class="guest-time"> • 2 hours ago</span></p>
+                </div>
+            </div>
+
+            <p class="title">Amazing view from my last trip to the mountains! Nature always amazes me 🏔️</p>
+           
+            <img src="https://placehold.co/640x348" alt="user post" class="pic">
+
+            <div class="react">
+                <div class="likes-btn">
+                    <img src="images/after-login/homepage/like.svg" alt="heart" class="react-icon">
+                    <span>0</span>
+                </div>
+                <button class="comments-btn">
+                    <img src="images/after-login/homepage/comment.svg" alt="comment" class="react-icon">
+                    <span>0</span>
+                </button>
+                <button class="shares-btn">
+                    <img src="images/after-login/homepage/share.svg" alt="share" class="react-icon">
+                </button>
+            </div> -->
+            <div class="loading-animation">
+                <img id="posts-errorHandling" src="images/animation/spinner-60px.gif"></img>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/navbar.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/posts.js"></script>
+    <script src="js/createpost.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,438 @@
+#app{
+    display: flex;
+    flex-direction: column;
+    width: 896px;
+    height: auto;
+    padding: 32px 16px 0 16px;
+    gap: 24px;
+    margin: 80px auto;
+}
+
+.profile-container{
+    width: 100%;
+    border-radius: 24px;
+    background: white;
+    box-shadow: var(--box-shadow);
+    height: 560px;
+    position: relative;
+    display: none;
+}
+
+.profile-container #profile-background{
+    width: 100%;
+    height: 192px;
+    background: linear-gradient(90deg, #C27AFF 0%, #FB64B6 50%, #51A2FF 100%);
+    border-radius: 24px 24px 0 0;
+    position: absolute;
+    top: 0;
+}
+
+.profile-container #profile{
+    width: 100%;
+    height: 432px;
+    position: relative;
+    top: 128px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 32px;
+    gap: 16px;
+}
+
+#profile #profile-header{
+    width: 100%;
+    height: 128px;
+    position: relative;
+}
+
+#profile-header #profile-image{
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: var(--box-shadow);
+}
+#profile-header #profile-button{
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    top: 84px;
+    left: 756px;
+    border-radius: 50%;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border: none;
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+}
+
+#profile-button:hover{
+    filter: brightness(90%);
+}
+
+#profile-button img{
+    width: 20px;
+    height: 20px;
+}
+
+/*************/
+
+.profile-container #profile-center{
+    width: 100%;
+    height: 184px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#profile-center #profile-name{
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 36px;
+    color: var(--htext-color);
+}
+
+#profile-center #profile-username{
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--text-secondary);
+}
+
+#profile-center #profile-bio{
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--text-color);
+}
+
+#profile-center #created-at-container{
+    display: flex;
+    gap: 8px;
+}
+
+#created-at-container #account-date{
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--text-secondary);
+}
+
+#profile-center #posts-count{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    gap:1px;
+}
+
+#posts-count #counter{
+    font-size: 24px;
+    line-height: 32px;
+    color: var(--htext-color);
+}
+
+#posts-count span{
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--text-secondary);
+    position: relative;
+    top: 10px;
+}
+
+/*************/
+
+#profile-container #profile-footer{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+#profile-footer #edit-profile{
+    width: 651px;
+    height: 48px;
+    border-radius: 14px;
+    box-shadow: var(--box-shadow);
+    color: white;
+    background: var(--primary-color);
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 20px;
+    transition: all 0.3s ease;
+}
+
+#profile-footer #edit-profile:hover{
+    background: var(--primary-hover);
+    transform: scale(1.01);
+}
+
+#profile-footer #share-profile{
+    width: 137px;
+    height: 48px;
+    border-radius: 14px;
+    color: var(--text-color);
+    background-color: hsl(220, 14%, 96%);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+#profile-footer #share-profile:hover{
+    transform: scale(1.01);
+    background-color: hsl(220, 14%, 86%);
+}
+
+/*************/
+
+.media-container{
+    width: 100%;
+    border-radius: 16px;
+    background: white;
+    box-shadow: var(--box-shadow);
+    padding: 8px;
+}
+
+.media-container #media-buttons{
+    width: 100%;
+    display: flex;
+    gap: 8px;
+}
+
+#media-buttons .media-btn{
+    width: 277.34px;
+    height: 48px;
+    border-radius: 14px;
+    border: none;
+    background: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+#media-buttons #posts-btn{
+    background: linear-gradient(90deg, #AD46FF 0%, #F6339A 100%);
+    color: white;
+}
+
+/*************/
+/*************/
+
+#edit-container{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    border-radius: 24px;
+    padding-bottom: 329px;
+    background: white;
+    box-shadow: var(--box-shadow);
+    width: 763px;
+    height: 671px;
+}
+
+#edit-container #edit-header{
+    background: linear-gradient(90deg, #AD46FF 0%, #F6339A 50%, #2B7FFF 100%);
+    width: 100%;
+    height: 88px;
+    padding: 24px;
+    border-radius: 24px 24px 0 0;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#edit-header h1{
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    color: white;
+}
+
+#edit-header #exit-edit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background: none;
+    border: none;
+}
+
+#exit-edit img{
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#exit-edit img:hover{
+    transform: scale(1.2);
+    filter: brightness(90%);
+}
+
+/*************/
+
+#edit-container #edit-footer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 27px 32px;
+    gap: 27px;
+}
+
+#edit-footer #pfp-container{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+#pfp-container p,
+#username-container p,
+#password-container p{
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--text-color);
+}
+
+#pfp-container #edit-pfp{
+    width: 96px;
+    height: 96px;
+    position: relative;
+}
+
+#edit-pfp #user-pfp{
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    border: 4px solid white;
+    object-fit: cover;
+    box-shadow: var(--box-shadow);
+}
+
+#edit-pfp button{
+    display: flex;
+    width: 32px;
+    height: 32px;
+    border: none;
+    position: absolute;
+    top: 64px;
+    left: 64px;
+    padding: 8px;
+    align-items: center;
+    justify-content: center;
+    background: #AD46FF;
+    box-shadow: var(--box-shadow);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+#edit-pfp button:hover{
+    transform: scale(1.1);
+    filter: brightness(80%);
+    cursor: pointer;
+}
+
+/*************/
+
+#edit-footer #username-container,
+#edit-footer #password-container{
+    display: flex;
+    flex-direction: column;
+    gap:8px
+
+}
+
+.input-container{
+    position: relative;
+    width: 100%;
+    height: 51.2px;
+    display: flex;
+}
+
+.input-container input{
+    border-radius: 14px;
+    border: 1.6px solid #E5E7EB;
+    padding: 12px 32px 12px 16px;
+    width: 100%;
+    color: #0A0A0A;
+    font-size: 16px;
+    line-height: 24px;
+    transition: all 0.3s ease;
+}
+
+.input-container input:focus{
+    border-color: #E60076;
+    background: #e600771c;
+
+}
+
+.input-container img{
+    position: absolute;
+    right: 12px;
+    top: 12px;
+}
+
+/*************/
+
+#edit-btn{
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    width: 100%;
+    height: 48px;
+}
+
+#edit-btn #save-btn{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background: var(--primary-color);
+    border-radius: 14px;
+    gap: 8px;
+    box-shadow: var(--box-shadow);
+    border: none;
+    width: 85%;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    line-height: 20px;
+    transition: all 0.3s ease;
+}
+
+#edit-btn #save-btn:hover{
+    transform: scale(1.01);
+    cursor: pointer;
+    filter: brightness(80%);
+}
+
+#edit-btn #cancel-btn{
+    width: 15%;
+    border-radius: 14px;
+    background: #E5E7EB;
+    border: none;
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+#edit-btn #cancel-btn:hover{
+    cursor: pointer;
+    filter: brightness(90%);
+    transform: scale(1.03);
+}
+
+/*********************/
+#profile-error{
+    display:none;
+    color:red;
+    text-align:center;
+    margin:20px 0;
+}
+
+#loading{
+    text-align:center;
+    margin:40px;
+}

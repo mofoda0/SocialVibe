@@ -4,41 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social Vibe</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/signup.css">
-    <link rel="icon" href="../images/home/logo.svg";>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/signup.css">
+    <link rel="icon" href="images/home/logo.svg";>
 </head>
 <body>
 
     <nav class="navbar">
         <div class="logo-containor">
-            <img src="../images/home/logo.svg" alt="logo">
+            <img src="images/home/logo.svg" alt="logo">
             <span class="logo-color">SocialVibe</span>
         </div>
         <div class="btn-containor">
-            <button class="non-active navbar-btn" onclick="location.href='../index.html'">
-                <img src="../images/home/homeblack.svg" alt="Home icon">
+            <button class="non-active navbar-btn" onclick="location.href='index.html'">
+                <img src="images/home/homeblack.svg" alt="Home icon">
                 <span>Home</span>
             </button>
             <button class="non-active navbar-btn" onclick="location.href='login.html'">
-                <img src="../images/home/loginblack.svg" alt="Login icon">
+                <img src="images/home/loginblack.svg" alt="Login icon">
                 <span>Login</span>
             </button>
             <button class="active navbar-btn" onclick="location.href='signup.html'">
-                <img src="../images/home/signup.svg" alt="SignUp icon">
+                <img src="images/home/signup.svg" alt="SignUp icon">
                 <span>Sign Up</span>
             </button>
         </div>
     </nav>
 
-    <img src="../images/signup/blured1.svg" class="blured-imgs image1">
-    <img src="../images/signup/blured2.svg" class="blured-imgs image2">
+    <img src="images/signup/blured1.svg" class="blured-imgs image1">
+    <img src="images/signup/blured2.svg" class="blured-imgs image2">
 
 
     <section class="signup-containor">
         <div class="signup-text">
             <div class="signup-header">
-                <img src="../images/login/login-logo.svg" alt="icon">
+                <img src="images/login/login-logo.svg" alt="icon">
                 <span class="logo-color">SocialVibe</span>
             </div>
             <h2>Join our community</h2>
@@ -47,45 +47,47 @@
         <div class="form-containor">
             <div class="form-text">
                 <h2>Create new account</h2>
-                <p>Fill in the details to get started</p>
+                <p>Fill in the details to get started <span id="signup-error"></span></p>
             </div>
-            <form>
+
+            <form onsubmit="signupBtn(event)">
                 <label for="name">Full Name
                     <div class="input-box">
-                    <input type="text" id="name" placeholder="Enter your full name" required>
-                    <img src="../images/signup/name.svg" class="input-icon">
+                        <input type="text" id="name" placeholder="Enter your full name" required>
+                        <img src="images/signup/name.svg" class="input-icon">
                     </div>
                 </label>
 
                 <label for="username">Username
                     <div class="input-box">
-                        <input type="username" id="username" placeholder="Choose a username" required>
-                        <img src="../images/login/Text.svg" class="input-icon">
+                        <input type="text" id="username" placeholder="Choose a username" required>
+                        <img src="images/login/Text.svg" class="input-icon">
                     </div>
                 </label>
 
                 <label for="email">Email
                     <div class="input-box">
                     <input type="email" id="email" placeholder="example@email.com" required>
-                    <img src="../images/signup/email.svg" class="input-icon">
+                    <img src="images/signup/email.svg" class="input-icon">
                     </div>
                 </label>
 
                 <label for="password">Password
                     <div class="input-box">
                     <input type="password" id="password" placeholder="********" required>
-                    <img src="../images/login/lock.svg" class="input-icon">
+                    <img src="images/login/lock.svg" class="input-icon">
                     </div>
                 </label>
 
-                <label for="file">Profile image <span>(Optional)</span>
-                    <div class="input-box">
-                    <input type="file" id="file" placeholder="https://example.com/image.jpg">
-                    <img src="" class="input-icon">
+                <label>Profile image <span>(Optional)</span>
+                    <div class="input-box" id="profile-file-box">
+                    <input type="text" id="file-front" placeholder="https://example.com/image.jpg" readonly>
+                    <input type="file" id="file" accept=".png, .jpg, .jpeg" hidden>
+                    <img src="images/signup/pic.svg" class="input-icon">
                     </div>
                 </label>
 
-                <button type="submit">Create Account</button>
+                <button id="createBtn" type="submit">Create Account</button>
             </form>
             <div class="account-status">
                 <span>Already have an account?</span>
@@ -93,6 +95,7 @@
             </div>
         </div>
     </section>
-
+<script src="js/login.js"></script>
+<script src="js/signup.js"></script>
 </body>
 </html>

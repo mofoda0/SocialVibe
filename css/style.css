@@ -5,11 +5,14 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Arimo", sans-serif, Arial;
+}
 
+*:focus{
+    outline: none
 }
 
 :root{
-    --primary-color: linear-gradient(90deg, #AD46FF, #F6339A);
+    --primary-color: linear-gradient(90deg, #AD46FF 0%, #F6339A 100%);
     --primary-hover: linear-gradient(90deg, #9514ff, #eb0a82);
     --htext-color: #1E2939;
     --text-color: #364153;
@@ -131,7 +134,7 @@ body{
     gap: 12px;
 }
 
-.logout-profile img{
+#user-profile{
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -140,6 +143,9 @@ body{
     cursor: pointer;
 }
 
+.loading-animation{
+    text-align: center;
+}
 
 ::-webkit-scrollbar{
     width: 8px;

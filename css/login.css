@@ -3,7 +3,21 @@
     left: 360px;
     top: 100px;
     z-index: -1000;
+    animation: flyingImgs 5s ease-in-out infinite alternate;
 }
+
+@keyframes flyingImgs{
+    0%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(200px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
 
 .login-containor{
     display: flex;
@@ -54,6 +68,11 @@
     padding: 64px;
     gap: 36px;
 }
+
+#login-error{
+    color: red;
+}
+
 .form-containor .form-text{
     display: flex;
     flex-direction: column;
@@ -96,7 +115,14 @@
     border: 2px solid #E5E7EB;
     border-radius: 14px;
     padding: 12px 32px 12px 16px;
-    width: 100%;    
+    width: 100%;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-box input:focus{
+    border-color: #E60076;
+    background: #e600771c;
 }
 
 .input-box img{

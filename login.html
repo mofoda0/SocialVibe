@@ -4,42 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Social Vibe</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/login.css">
-    <link rel="icon" href="../images/home/logo.svg";>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" href="images/home/logo.svg";>
 
-    <script src="../node_modules/axios/dist/axios.min.js"></script>
 
 </head>
 <body>
 
     <nav class="navbar">
         <div class="logo-containor">
-            <img src="../images/home/logo.svg" alt="logo">
+            <img src="images/home/logo.svg" alt="logo">
             <span class="logo-color">SocialVibe</span>
         </div>
         <div class="btn-containor">
-            <button class="non-active navbar-btn" onclick="location.href='../index.html'">
-                <img src="../images/home/homeblack.svg" alt="Home icon">
+            <button class="non-active navbar-btn" onclick="location.href='index.html'">
+                <img src="images/home/homeblack.svg" alt="Home icon">
                 <span>Home</span>
             </button>
             <button class="active navbar-btn" onclick="location.href='login.html'">
-                <img src="../images/home/loginwhite.svg" alt="Login icon">
+                <img src="images/home/loginwhite.svg" alt="Login icon">
                 <span>Login</span>
             </button>
             <button class="active navbar-btn" onclick="location.href='signup.html'">
-                <img src="../images/home/signup.svg" alt="SignUp icon">
+                <img src="images/home/signup.svg" alt="SignUp icon">
                 <span>Sign Up</span>
             </button>
         </div>
     </nav>
 
-    <img src="../images/login/login-blur1.svg" class="blured-imgs">
+    <img src="images/login/login-blur1.svg" class="blured-imgs">
 
     <section class="login-containor">
         <div class="login-text">
             <div class="login-header">
-                <img src="../images/login/login-logo.svg" alt="icon">
+                <img src="images/login/login-logo.svg" alt="icon">
                 <span class="logo-color">SocialVibe</span>
             </div>
             <h2>Connect with the world</h2>
@@ -48,23 +47,24 @@
         <div class="form-containor">
             <div class="form-text">
                 <h2>Welcome back!</h2>
-                <p>Login to continue</p>
+                <p>Login to continue <span id="login-error"></span></p>
             </div>
-            <form id="login-form">
+    
+            <form id="login-form" onsubmit="loginBtn(event)">
                 <label for="username-input">Username
                     <div class="input-box">
-                        <input type="username" id="username-input" placeholder="Username">
-                        <img src="../images/login/Text.svg" class="input-icon">
+                        <input type="username" id="username-input" placeholder="Username" required>
+                        <img src="images/login/Text.svg" class="input-icon">
                     </div>
                 </label>
                 <label for="password-input">Password
                     <div class="input-box">
-                    <input type="password" id="password-input" placeholder="Password">
-                    <img src="../images/login/lock.svg" class="input-icon">
+                    <input type="password" id="password-input" placeholder="Password" required>
+                    <img src="images/login/lock.svg" class="input-icon">
                     </div>
                 </label>
 
-                <button type="button" onclick="loginBtn()">Login</button>
+                <button id="login-btn" type="submit">Login</button>
             </form>
             <div class="account-status">
                 <span>Don't have an account?</span>
@@ -73,6 +73,6 @@
         </div>
     </section>
 
-<script src="../js/login.js"></script>
+<script src="js/login.js"></script>
 </body>
 </html>
