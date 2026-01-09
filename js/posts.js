@@ -56,10 +56,18 @@ async function loadPosts() {
                     <div class="box-container">
                         <div class="pfp-box">
                             <div>
-                                <img class="pfp" src="${profileImg}" ${isLoggedIn ? `onclick="goToProfile(${author.id})"` : `onclick="location.href='login.html'"`} onerror="this.src='images/after-login/homepage/blank-profile.png'" style="cursor:pointer">
+                                <img class="pfp" src="${profileImg}" ${
+        isLoggedIn
+          ? `onclick="goToProfile(${author.id})"`
+          : `onclick="location.href='login.html'"`
+      } onerror="this.src='images/after-login/homepage/blank-profile.png'" style="cursor:pointer">
                             </div>
                             <div>
-                                <span class="name" ${isLoggedIn? `onclick="goToProfile(${author.id})"` : `onclick="location.href='login.html'"`}>${author.name}</span>
+                                <span class="name" ${
+                                  isLoggedIn
+                                    ? `onclick="goToProfile(${author.id})"`
+                                    : `onclick="location.href='login.html'"`
+                                }>${author.name}</span>
                                 <p class="user">
                                     @${author.username}
                                     <span class="guest-time"> • ${
@@ -107,7 +115,9 @@ async function loadPosts() {
                         </div>
 
                         <button class="comments-btn" ${
-                          !isLoggedIn ? `onclick="location.href='login.html'"` : ""
+                          !isLoggedIn
+                            ? `onclick="location.href='login.html'"`
+                            : ""
                         }>
                             <img src="images/after-login/homepage/comment.svg" class="react-icon">
                             <span>${post.comments_count}</span>
@@ -476,12 +486,17 @@ async function fetchWithRetry(url, options = {}, retries = 3, timeout = 5000) {
       const controller = new AbortController();
       const id = setTimeout(() => controller.abort(), timeout);
 
-      const response = await fetch(url, { ...options, signal: controller.signal });
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal,
+      });
       clearTimeout(id);
 
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
+        throw new Error(
+          `HTTP error! Status: ${response.status} - ${errorText}`
+        );
       }
 
       return await response.json();
@@ -489,10 +504,12 @@ async function fetchWithRetry(url, options = {}, retries = 3, timeout = 5000) {
       console.warn(`Attempt ${attempt} failed for ${url}: ${err.message}`);
 
       if (attempt === retries) {
-        throw new Error(`Request failed after ${retries} attempts: ${err.message}`);
+        throw new Error(
+          `Request failed after ${retries} attempts: ${err.message}`
+        );
       }
 
-      const delay = 1000 * Math.pow(2, attempt - 1); 
+      const delay = 1000 * Math.pow(2, attempt - 1);
       console.log(`Retrying in ${delay / 1000}s...`);
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
@@ -504,7 +521,10 @@ let ticking = false;
 window.addEventListener("scroll", () => {
   if (!ticking) {
     window.requestAnimationFrame(() => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.offsetHeight - 200
+      ) {
         loadPosts();
       }
       ticking = false;

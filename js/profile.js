@@ -52,7 +52,6 @@ async function loadProfile() {
     const profileNav = document.getElementById("pfp-btn");
     const profileNavImg = document.getElementById("pfp-img");
 
-
     if (userId == currentUser.id) {
       profileBtn.style.display = "flex";
 
@@ -60,13 +59,12 @@ async function loadProfile() {
       followingCounter.style.display = "none";
       profileBio.textContent = `Welcome to my profile!`;
 
-
       primaryBtn.textContent = "Edit Profile";
       primaryBtn.onclick = () => (location.href = "editprofile.html");
 
       secondaryBtn.textContent = "Share Profile";
       secondaryBtn.onclick = () => {
-        navigator.clipboard.writeText(window.location.href);
+        navigator.clipboard.writeText(`${window.location.origin}/profile.html?id=${userId}`);
         secondaryBtn.textContent = "Copied";
         secondaryBtn.disabled = true;
         secondaryBtn.style.opacity = 0.5;
@@ -86,8 +84,7 @@ async function loadProfile() {
 
       profileNav.classList.add("non-active");
       profileNav.classList.remove("active");
-      profileNavImg.src="images/after-login/navbar/profile.icon.svg";
-
+      profileNavImg.src = "images/after-login/navbar/profile.icon.svg";
 
       profileBtn.style.display = "none";
       primaryBtn.textContent = "Follow";
@@ -125,7 +122,6 @@ async function loadUserPosts(userId, authToken, container, currentUser) {
         headers: { Authorization: `Bearer ${authToken}` },
       }
     );
-
 
     if (!Array.isArray(data) || data.length === 0) {
       container.innerHTML = `<p style="text-align:center; color:gray;">No posts yet.</p>`;
@@ -272,7 +268,7 @@ function setupProfilePostMenus(container, authToken) {
       saveBtn.disabled = true;
 
       try {
-       await fetchWithRetry(
+        await fetchWithRetry(
           `https://tarmeezacademy.com/api/v1/posts/${postEl.dataset.postId}`,
           {
             method: "PUT",
@@ -284,7 +280,6 @@ function setupProfilePostMenus(container, authToken) {
             body: JSON.stringify({ body: newBody }),
           }
         );
-
 
         titleP.textContent = newBody;
         titleP.style.display = "block";
@@ -325,7 +320,6 @@ function setupProfilePostMenus(container, authToken) {
           }
         );
 
-
         postEl.remove();
       } catch (err) {
         console.error(err);
@@ -344,12 +338,17 @@ async function fetchWithRetry(url, options = {}, retries = 3, timeout = 5000) {
       const controller = new AbortController();
       const id = setTimeout(() => controller.abort(), timeout);
 
-      const response = await fetch(url, { ...options, signal: controller.signal });
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal,
+      });
       clearTimeout(id);
 
       if (!response.ok) {
         const errorText = await response.text();
-        throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
+        throw new Error(
+          `HTTP error! Status: ${response.status} - ${errorText}`
+        );
       }
 
       return await response.json();
@@ -357,16 +356,16 @@ async function fetchWithRetry(url, options = {}, retries = 3, timeout = 5000) {
       console.warn(`Attempt ${attempt} failed for ${url}: ${err.message}`);
 
       if (attempt === retries) {
-        throw new Error(`Request failed after ${retries} attempts: ${err.message}`);
+        throw new Error(
+          `Request failed after ${retries} attempts: ${err.message}`
+        );
       }
 
-      const delay = 1000 * Math.pow(2, attempt - 1); 
+      const delay = 1000 * Math.pow(2, attempt - 1);
       console.log(`Retrying in ${delay / 1000}s...`);
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
   }
 }
 
-
 document.addEventListener("DOMContentLoaded", loadProfile);
-

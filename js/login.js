@@ -102,4 +102,3 @@ if (!token && protectedPages.includes(page)) {
 if (token && authPages.includes(page)) {
   window.location.href = "home.html";
 }
-
