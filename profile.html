@@ -23,8 +23,8 @@
                 <span>Home</span>
             </button>
 
-            <button class="active navbar-btn" onclick="location.href='profile.html'">
-                <img src="images/after-login/navbar/profile.icon-white.svg" alt="Profile icon">
+            <button id="pfp-btn" class="active navbar-btn" onclick="location.href='profile.html'">
+                <img id="pfp-img" src="images/after-login/navbar/profile.icon-white.svg" alt="Profile icon">
                 <span>Profile</span>
             </button>
 
@@ -68,15 +68,28 @@
                         <span id="account-date">Joined in January 2024</span>
                     </div>
 
-                    <div id="posts-count">
-                        <p id="counter">89</p>
-                        <span>Posts</span>
+                    <div class="counter-container">
+                        <div id="posts-count" class="counterDiv">
+                            <p id="counter" class="counters">89</p>
+                            <span>Posts</span>
+                        </div>
+
+                        <div id="followers-count" class="counterDiv">
+                            <p class="counters">892</p>
+                            <span>Followers</span>
+                        </div>
+
+                        <div id="following-count" class="counterDiv">
+                            <p class="counters">234</p>
+                            <span>Following</span>
+                        </div>
                     </div>
+                    
                 </div>
 
                 <div id="profile-footer">
-                    <button id="edit-profile" onclick="location.href='editprofile.html'">Edit Profile</button>
-                    <button id="share-profile">Share Profile</button>
+                    <button id="primary-action"></button>
+                    <button id="secondary-action"></button>
                 </div>
             </div>
         </div>
@@ -89,7 +102,7 @@
             </div>
         </div>
 
-        <div id="user-posts" class="posts upated-posts">
+        <div id="user-posts">
 
             <!-- <div class="box-container">
                 <div class="pfp-box">
@@ -131,6 +144,5 @@
 <script src="js/profile.js"></script>
 <script src="js/navbar.js"></script>
 <script src="js/login.js"></script>
-<script src="js/signup.js"></script>
 </body>
 </html>

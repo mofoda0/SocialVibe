@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const currentUserJSON = localStorage.getItem("user");
   const userProfileImg = document.getElementById("user-profile");
-  const navbarProfileIcon = document.getElementById("navbar-profile-icon");
 
   if (!currentUserJSON) return;
 

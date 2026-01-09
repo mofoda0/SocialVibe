@@ -116,20 +116,26 @@
     color: var(--text-secondary);
 }
 
-#profile-center #posts-count{
+.counter-container{
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+}
+
+.counterDiv{
     display: flex;
     flex-direction: row;
     position: relative;
     gap:1px;
 }
 
-#posts-count #counter{
+.counterDiv .counters{
     font-size: 24px;
     line-height: 32px;
     color: var(--htext-color);
 }
 
-#posts-count span{
+.counterDiv span{
     font-size: 16px;
     line-height: 24px;
     color: var(--text-secondary);
@@ -146,7 +152,7 @@
     gap: 12px;
 }
 
-#profile-footer #edit-profile{
+#profile-footer #primary-action{
     width: 651px;
     height: 48px;
     border-radius: 14px;
@@ -160,12 +166,12 @@
     transition: all 0.3s ease;
 }
 
-#profile-footer #edit-profile:hover{
+#profile-footer #primary-action:hover{
     background: var(--primary-hover);
     transform: scale(1.01);
 }
 
-#profile-footer #share-profile{
+#profile-footer #secondary-action{
     width: 137px;
     height: 48px;
     border-radius: 14px;
@@ -178,7 +184,7 @@
     line-height: 20px;
 }
 
-#profile-footer #share-profile:hover{
+#profile-footer #secondary-action:hover{
     transform: scale(1.01);
     background-color: hsl(220, 14%, 86%);
 }
@@ -229,6 +235,7 @@
     box-shadow: var(--box-shadow);
     width: 763px;
     height: 671px;
+    margin: 0 auto;
 }
 
 #edit-container #edit-header{
@@ -436,3 +443,22 @@
     text-align:center;
     margin:40px;
 }
+
+/*********************/
+
+.posts-box{
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+#user-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+

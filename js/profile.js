@@ -23,16 +23,12 @@ async function loadProfile() {
     new URLSearchParams(window.location.search).get("id") || currentUser.id;
 
   try {
-    const response = await fetch(
+    const { data } = await fetchWithRetry(
       `https://tarmeezacademy.com/api/v1/users/${userId}`,
       {
         headers: { Authorization: `Bearer ${authToken}` },
       }
     );
-
-    if (!response.ok) throw new Error("Failed to fetch user profile");
-
-    const { data } = await response.json();
 
     const profileImageSrc =
       typeof data.profile_image === "string" && data.profile_image.trim() !== ""
@@ -47,8 +43,56 @@ async function loadProfile() {
     profileImage.onerror = () =>
       (profileImage.src = "images/after-login/homepage/blank-profile.png");
 
-    const editBtn = document.getElementById("edit-profile");
-    editBtn.style.display = userId == currentUser.id ? "inline-block" : "none";
+    const primaryBtn = document.getElementById("primary-action");
+    const secondaryBtn = document.getElementById("secondary-action");
+    const profileBtn = document.getElementById("profile-button");
+    const followerCounter = document.getElementById("followers-count");
+    const followingCounter = document.getElementById("following-count");
+    const profileBio = document.getElementById("profile-bio");
+    const profileNav = document.getElementById("pfp-btn");
+    const profileNavImg = document.getElementById("pfp-img");
+
+
+    if (userId == currentUser.id) {
+      profileBtn.style.display = "flex";
+
+      followerCounter.style.display = "none";
+      followingCounter.style.display = "none";
+      profileBio.textContent = `Welcome to my profile!`;
+
+
+      primaryBtn.textContent = "Edit Profile";
+      primaryBtn.onclick = () => (location.href = "editprofile.html");
+
+      secondaryBtn.textContent = "Share Profile";
+      secondaryBtn.onclick = () => {
+        navigator.clipboard.writeText(window.location.href);
+        secondaryBtn.textContent = "Copied";
+        secondaryBtn.disabled = true;
+        secondaryBtn.style.opacity = 0.5;
+        secondaryBtn.style.cursor = "not-allowed";
+
+        setTimeout(() => {
+          secondaryBtn.textContent = "Share Profile";
+          secondaryBtn.disabled = false;
+          secondaryBtn.style.opacity = 1;
+          secondaryBtn.style.cursor = "pointer";
+        }, 2000);
+      };
+    } else {
+      followerCounter.style.display = "flex";
+      followingCounter.style.display = "flex";
+      profileBio.textContent = "Food & Travel Lover 🍳✈️";
+
+      profileNav.classList.add("non-active");
+      profileNav.classList.remove("active");
+      profileNavImg.src="images/after-login/navbar/profile.icon.svg";
+
+
+      profileBtn.style.display = "none";
+      primaryBtn.textContent = "Follow";
+      secondaryBtn.textContent = "Message";
+    }
 
     const counter = document.getElementById("counter");
     counter.textContent = data.posts_count || 0;
@@ -72,19 +116,17 @@ async function loadUserPosts(userId, authToken, container, currentUser) {
   if (!container) return;
 
   container.innerHTML = "";
-  container.style.display = "block";
+  container.style.display = "flex";
 
   try {
-    const response = await fetch(
+    const { data } = await fetchWithRetry(
       `https://tarmeezacademy.com/api/v1/users/${userId}/posts`,
       {
         headers: { Authorization: `Bearer ${authToken}` },
       }
     );
 
-    if (!response.ok) throw new Error("Failed to fetch user posts");
 
-    const { data } = await response.json();
     if (!Array.isArray(data) || data.length === 0) {
       container.innerHTML = `<p style="text-align:center; color:gray;">No posts yet.</p>`;
       return;
@@ -110,21 +152,28 @@ async function loadUserPosts(userId, authToken, container, currentUser) {
           ? `<img src="${post.image}" class="pic" onerror="this.src='images/after-login/homepage/blank-profile.png'">`
           : "";
 
+      const isOwner = post.author?.id === currentUser.id;
+
+      const manageButton = isOwner
+        ? `
+      <button class="post-manage">
+        <img src="images/after-login/homepage/manage-post.svg">
+      </button>
+      `
+        : "";
+
       postBox.innerHTML = `
                 <div class="box-container">
                     <div class="pfp-box">
                         <div>
-                            <img class="pfp" src="${authorImg}" alt="pfp" onerror="this.src='images/after-login/homepage/blank-profile.png'">
+                            <img class="pfp" src="${authorImg}" alt="pfp" onerror="this.src='images/after-login/homepage/blank-profile.png'" >
                         </div>
                         <div>
                             <span class="name">${authorName}</span>
                             <p class="user">@${authorUsername}<span class="guest-time"> • ${createdAt}</span></p>
                         </div>
                     </div>
-                    <button class="post-manage">
-                        <img src="images/after-login/homepage/manage-post.svg">
-                    </button>
-                        
+                    ${manageButton}                        
                     <div class="post-editor" style="display: none;">
                         <button class="edit-post">
                             <img src="images/home/edit-icon.svg">
@@ -152,8 +201,6 @@ async function loadUserPosts(userId, authToken, container, currentUser) {
                             <button class="cancel-edit">Cancel</button>
                         </div>
                     </div>
-
-
 
                 ${postImage}
                 <div class="react">
@@ -207,6 +254,7 @@ function setupProfilePostMenus(container, authToken) {
       textarea.style.display = "block";
       textarea.value = titleP.textContent;
       btnsContainer.style.display = "flex";
+      editor.style.display = "none";
     };
 
     const saveBtn = btnsContainer.querySelector(".save-edit");
@@ -224,7 +272,7 @@ function setupProfilePostMenus(container, authToken) {
       saveBtn.disabled = true;
 
       try {
-        const res = await fetch(
+       await fetchWithRetry(
           `https://tarmeezacademy.com/api/v1/posts/${postEl.dataset.postId}`,
           {
             method: "PUT",
@@ -237,7 +285,6 @@ function setupProfilePostMenus(container, authToken) {
           }
         );
 
-        if (!res.ok) throw new Error("Failed to save post");
 
         titleP.textContent = newBody;
         titleP.style.display = "block";
@@ -267,7 +314,7 @@ function setupProfilePostMenus(container, authToken) {
       deleteBtn.disabled = true;
 
       try {
-        const res = await fetch(
+        await fetchWithRetry(
           `https://tarmeezacademy.com/api/v1/posts/${postEl.dataset.postId}`,
           {
             method: "DELETE",
@@ -278,7 +325,6 @@ function setupProfilePostMenus(container, authToken) {
           }
         );
 
-        if (!res.ok) throw new Error("Failed to delete post");
 
         postEl.remove();
       } catch (err) {
@@ -292,4 +338,35 @@ function setupProfilePostMenus(container, authToken) {
   });
 }
 
+async function fetchWithRetry(url, options = {}, retries = 3, timeout = 5000) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), timeout);
+
+      const response = await fetch(url, { ...options, signal: controller.signal });
+      clearTimeout(id);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
+      }
+
+      return await response.json();
+    } catch (err) {
+      console.warn(`Attempt ${attempt} failed for ${url}: ${err.message}`);
+
+      if (attempt === retries) {
+        throw new Error(`Request failed after ${retries} attempts: ${err.message}`);
+      }
+
+      const delay = 1000 * Math.pow(2, attempt - 1); 
+      console.log(`Retrying in ${delay / 1000}s...`);
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+  }
+}
+
+
 document.addEventListener("DOMContentLoaded", loadProfile);
+

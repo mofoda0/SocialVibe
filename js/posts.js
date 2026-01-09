@@ -20,10 +20,9 @@ async function loadPosts() {
   isLoading = true;
 
   try {
-    const response = await fetch(
+    const data = await fetchWithRetry(
       `https://tarmeezacademy.com/api/v1/posts?limit=20&page=${currentPage}`
     );
-    const data = await response.json();
     const posts = data.data;
 
     if (currentPage === 1) {
@@ -57,11 +56,10 @@ async function loadPosts() {
                     <div class="box-container">
                         <div class="pfp-box">
                             <div>
-                                <img class="pfp" src="${profileImg}" 
-                                onerror="this.src='images/after-login/homepage/blank-profile.png'">
+                                <img class="pfp" src="${profileImg}" ${isLoggedIn ? `onclick="goToProfile(${author.id})"` : `onclick="location.href='login.html'"`} onerror="this.src='images/after-login/homepage/blank-profile.png'" style="cursor:pointer">
                             </div>
                             <div>
-                                <span class="name">${author.name}</span>
+                                <span class="name" ${isLoggedIn? `onclick="goToProfile(${author.id})"` : `onclick="location.href='login.html'"`}>${author.name}</span>
                                 <p class="user">
                                     @${author.username}
                                     <span class="guest-time"> • ${
@@ -109,7 +107,7 @@ async function loadPosts() {
                         </div>
 
                         <button class="comments-btn" ${
-                          !isLoggedIn ? "disabled" : ""
+                          !isLoggedIn ? `onclick="location.href='login.html'"` : ""
                         }>
                             <img src="images/after-login/homepage/comment.svg" class="react-icon">
                             <span>${post.comments_count}</span>
@@ -142,6 +140,10 @@ async function loadPosts() {
   }
 }
 
+function goToProfile(userId) {
+  window.location.href = `profile.html?id=${userId}`;
+}
+
 function setupPostMenus() {
   document.querySelectorAll(".post-manage").forEach((btn) => {
     const postEl = btn.closest(".posts");
@@ -156,6 +158,12 @@ function setupPostMenus() {
       editor.style.display = editor.style.display === "flex" ? "none" : "flex";
     };
 
+    document.addEventListener("click", (e) => {
+      if (!editor.contains(e.target) && editor.style.display === "flex") {
+        editor.style.display = "none";
+      }
+    });
+
     const editBtn = editor.querySelector(".edit-post");
     editBtn.onclick = () => {
       textarea.value = titleP.textContent;
@@ -163,6 +171,30 @@ function setupPostMenus() {
       textarea.style.display = "block";
       btnsContainer.style.display = "flex";
       editor.style.display = "none";
+    };
+
+    const shareBtn = editor.querySelector(".share-post");
+    shareBtn.onclick = async () => {
+      navigator.clipboard.writeText(
+        `https://tarmeezacademy.com/api/v1/posts/${postEl.dataset.postId}`
+      );
+      shareBtn.innerHTML = `
+          <img src="images/home/share-icon.svg">
+          <span>Copied</span>
+        `;
+      shareBtn.disabled = true;
+      shareBtn.style.opacity = 0.5;
+      shareBtn.style.cursor = "not-allowed";
+
+      setTimeout(() => {
+        shareBtn.innerHTML = `
+            <img src="images/home/share-icon.svg">
+            <span>Share</span>
+          `;
+        shareBtn.disabled = false;
+        shareBtn.style.opacity = 1;
+        shareBtn.style.cursor = "pointer";
+      }, 2000);
     };
 
     const saveBtn = btnsContainer.querySelector(".save-edit");
@@ -199,7 +231,7 @@ function setupPostMenus() {
       errorEl.textContent = "";
 
       try {
-        await fetch(
+        await fetchWithRetry(
           `https://tarmeezacademy.com/api/v1/posts/${postEl.dataset.postId}`,
           {
             method: "PUT",
@@ -248,7 +280,7 @@ function setupPostMenus() {
       deleteBtn.style.cursor = "not-allowed";
 
       try {
-        await fetch(
+        await fetchWithRetry(
           `https://tarmeezacademy.com/api/v1/posts/${postEl.dataset.postId}`,
           {
             method: "DELETE",
@@ -258,8 +290,8 @@ function setupPostMenus() {
             },
           }
         );
-
         postEl.remove();
+        window.location.reload();
       } catch (err) {
         console.error(err);
         alert("Failed to delete post");
@@ -315,10 +347,9 @@ async function loadComments(postId, container) {
     </div>`;
 
   try {
-    const res = await fetch(
+    const data = await fetchWithRetry(
       `https://tarmeezacademy.com/api/v1/posts/${postId}`
     );
-    const data = await res.json();
     let comments = data.data.comments;
     comments = comments.slice().reverse();
 
@@ -336,10 +367,10 @@ async function loadComments(postId, container) {
       html += `
                 <div class="read-comments">
                     <div class="read-comment">
-                        <img class="comments-pfp" src="${commentPfp}" onerror="this.src='images/after-login/homepage/blank-profile.png'">
+                        <img class="comments-pfp" src="${commentPfp}" onerror="this.src='images/after-login/homepage/blank-profile.png'" onclick="goToProfile(${c.author.id})">
                         <div class="read-text">
                             <div class="text-top">
-                                <p>${c.author.name}</p>
+                                <p onclick="goToProfile(${c.author.id})" style="cursor:pointer;">${c.author.name}</p>
                                 <span>${c.body}</span>
                             </div>
                             <div class="text-bottom">
@@ -411,7 +442,7 @@ function setupWriteComment(postId, container, currentUser) {
     if (!body) return;
 
     try {
-      await fetch(
+      await fetchWithRetry(
         `https://tarmeezacademy.com/api/v1/posts/${postId}/comments`,
         {
           method: "POST",
@@ -439,8 +470,45 @@ function setupWriteComment(postId, container, currentUser) {
 
 loadPosts();
 
+async function fetchWithRetry(url, options = {}, retries = 3, timeout = 5000) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), timeout);
+
+      const response = await fetch(url, { ...options, signal: controller.signal });
+      clearTimeout(id);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`HTTP error! Status: ${response.status} - ${errorText}`);
+      }
+
+      return await response.json();
+    } catch (err) {
+      console.warn(`Attempt ${attempt} failed for ${url}: ${err.message}`);
+
+      if (attempt === retries) {
+        throw new Error(`Request failed after ${retries} attempts: ${err.message}`);
+      }
+
+      const delay = 1000 * Math.pow(2, attempt - 1); 
+      console.log(`Retrying in ${delay / 1000}s...`);
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+  }
+}
+
+let ticking = false;
+
 window.addEventListener("scroll", () => {
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
-    loadPosts();
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 200) {
+        loadPosts();
+      }
+      ticking = false;
+    });
+    ticking = true;
   }
 });
