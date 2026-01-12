@@ -275,25 +275,28 @@ body{
     }
 
     .post-box{
-        width: 100% !important;
+        width: 90% !important;
     }
 
     .post-box #post-textarea{
-        width: 100% !important;
-
+        width: 90% !important;
     }
 
     .post-image #img-preview{
-        width: 100% !important;
+        width: 90% !important;
     }
     
     .imageName-container{
-        width: 100% !important;
+        width: 90% !important;
     }
 
-    #content {
+    #content{
         width: 100% !important;
         padding: 10px;
     }
 
+    .uploud-box{
+        width: 90% !important;
+
+    }
 }
