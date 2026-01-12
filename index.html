@@ -15,7 +15,14 @@
             <img src="images/home/logo.svg" alt="logo">
             <span class="logo-color">SocialVibe</span>
         </div>
-        <div class="btn-containor">
+
+        <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="btn-containor" id="nav-menu">
             <button class="active navbar-btn" onclick="location.href='index.html'">
                 <img src="images/home/homewhite.svg" alt="Home icon">
                 <span>Home</span>
@@ -24,8 +31,12 @@
                 <img src="images/home/loginblack.svg" alt="Login icon">
                 <span>Login</span>
             </button>
-            <button class="active navbar-btn" onclick="location.href='signup.html'">
+            <button id="signupBtn-desktop" class="active navbar-btn" onclick="location.href='signup.html'">
                 <img src="images/home/signup.svg" alt="SignUp icon">
+                <span>Sign Up</span>
+            </button>
+            <button id="signupBtn-phone" class="non-active navbar-btn" onclick="location.href='signup.html'">
+                <img src="images/home/signup-white.svg" alt="SignUp icon">
                 <span>Sign Up</span>
             </button>
         </div>
@@ -41,5 +52,7 @@
     
     <script src="js/posts.js"></script>
     <script src="js/login.js"></script>
+    <script src="js/navbar.js"></script>
+
 </body>
 </html>

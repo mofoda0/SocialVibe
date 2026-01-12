@@ -170,3 +170,32 @@
 #signup-error{
     color: red;
 }
+
+@media (max-width: 1200px) {
+
+    .signup-containor{
+        width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .signup-containor{
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        padding: 16px;
+        margin: 60px auto;
+    }
+
+    .signup-text{
+        display: none;
+    }
+
+    .form-containor{
+        width: 100% !important;
+        padding: 40px !important;
+        height: auto !important;
+    }
+
+}

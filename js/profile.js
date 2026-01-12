@@ -51,6 +51,8 @@ async function loadProfile() {
     const profileBio = document.getElementById("profile-bio");
     const profileNav = document.getElementById("pfp-btn");
     const profileNavImg = document.getElementById("pfp-img");
+    const openingfromgithub = window.location.hostname.includes("github.io");
+
 
     if (userId == currentUser.id) {
       profileBtn.style.display = "flex";
@@ -64,7 +66,7 @@ async function loadProfile() {
 
       secondaryBtn.textContent = "Share Profile";
       secondaryBtn.onclick = () => {
-        navigator.clipboard.writeText(`${window.location.origin}/profile.html?id=${userId}`);
+        navigator.clipboard.writeText(`${window.location.origin}${openingfromgithub? `/SocialVibe` : ""}/profile.html?id=${userId}`);
         secondaryBtn.textContent = "Copied";
         secondaryBtn.disabled = true;
         secondaryBtn.style.opacity = 0.5;

@@ -165,4 +165,35 @@
     transform: scale(1.1);
 }
 
+@media (max-width: 1280px){
+    .login-containor{
+        width: 100%;
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 768px){
+    .login-containor{
+        flex-direction: column;
+        height: auto;
+        gap: 40px;
+        padding: 40px 20px;
+        margin-top: 50px;
+    }
+
+    .login-containor .form-containor{
+        width: 100%;
+        height: auto;
+        padding: 32px;
+        
+    }
+
+    .login-text {
+        display: none;
+    }
+
+    
+}
+
+
 

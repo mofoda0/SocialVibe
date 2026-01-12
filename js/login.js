@@ -53,14 +53,23 @@ async function loginBtn(event) {
 async function logout() {
   const token = localStorage.getItem("token");
   const logoutBtn = document.getElementById("logout-btn");
+  const logoutPh = document.getElementById("logout-phone");
 
   logoutBtn.innerHTML = `
             <img src="images/after-login/navbar/logout.svg" alt="Log out icon">
             <span>Logging Out...</span>
         `;
   logoutBtn.disabled = true;
-  logoutBtn.style.opacity = "0.5";
+  logoutBtn.style.opacity = 0.5;
   logoutBtn.style.cursor = "not-allowed";
+
+  logoutPh.innerHTML = `
+            <img src="images/home/logout.svg" alt="Log out icon">
+            <span>Logging Out...</span>
+        `;
+  logoutPh.disabled = true;
+  logoutPh.style.opacity = 0.5;
+  logoutPh.style.cursor = "not-allowed"
 
   try {
     const response = await fetch("https://tarmeezacademy.com/api/v1/logout", {
@@ -80,13 +89,22 @@ async function logout() {
     console.error("Logout error:", error);
     alert("Logout failed, try again.");
   } finally {
+    
     logoutBtn.innerHTML = `
             <img src="images/after-login/navbar/logout.svg" alt="Log out icon">
             <span>Log Out</span>
         `;
     logoutBtn.disabled = false;
-    logoutBtn.style.opacity = "1";
+    logoutBtn.style.opacity = 1;
     logoutBtn.style.cursor = "pointer";
+
+    logoutPh.innerHTML = `
+            <img src="images/home/logout.svg" alt="Log out icon">
+            <span>Log Out</span>
+        `;
+    logoutPh.disabled = false;
+    logoutPh.style.opacity = 0.5;
+    logoutPh.style.cursor = "pointer"
   }
 }
 

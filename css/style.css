@@ -56,14 +56,19 @@ body{
     background-clip: text; 
 }
 
-.btn-containor{
+.btn-containor,
+.desktop-container,
+.phone-container{
     display: flex;
     align-items: center;
     gap: 24px;
 }
 
 
-.btn-containor .navbar-btn{
+
+
+.btn-containor .navbar-btn,
+.desktop-container .navbar-btn{
     display: flex;
     align-items: center;
     gap: 8px;
@@ -76,32 +81,38 @@ body{
     
 }
 
-.btn-containor .navbar-btn img{
+.phone-container{
+    display: none;
+}
+
+.navbar-btn img{
     width: 20px;
     height: 20px;
 }
 
-.btn-containor .navbar-btn span{
+.navbar-btn span{
     font-size: 14px;
     line-height: 20px;    
 }
 
-.btn-containor .non-active{
+.btn-containor .non-active,
+.desktop-container .non-active{
     color: var(--text-color);
 }
 
-.btn-containor .active{
+.btn-containor .active,
+.desktop-container .active{
     background: var(--primary-color);
     box-shadow: var(--box-shadow);
     color: white;
 }
 
-.active:hover{
+.btn-containor .active:hover{
     background: var(--primary-hover);
     transform: scale(1.05);
 }
 
-.non-active:hover{
+.btn-containor .non-active:hover{
     color: var(--text-hover);
     transform: scale(1.05);
 }
@@ -164,4 +175,125 @@ body{
 
 ::-webkit-scrollbar-thumb:hover{
     background: var(--primary-hover);
+}
+
+.nav-container{
+    display: flex;
+
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #000;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+#signupBtn-phone{
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    .hamburger {
+        display: flex;
+    }
+
+    .desktop-container{
+        display: none;
+    }
+
+    .phone-container{
+        display: flex;
+    }
+
+    .btn-containor {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        display: none;
+        border-top: 1.35px solid #E5E7EB;
+        padding: 16px 16px;
+        gap: 8px;
+    }
+
+    .btn-containor .navbar-btn{
+        width: 100%;
+        border-radius: 14px;
+        padding-left: 16px;
+        gap: 12px;
+    }
+
+    .btn-containor.menu-open {
+        display: flex;
+    }
+
+    .btn-containor .active:hover,
+    .btn-containor .non-active:hover {
+        transform: none;
+    }
+
+    #signupBtn-desktop{
+        display: none;
+    }
+
+    #signupBtn-phone{
+        display: flex;
+    }
+
+    #uploud-posts{
+        width: 100% !important;
+        padding: 10px;
+    }
+
+    .post-box{
+        width: 100% !important;
+    }
+
+    .post-box #post-textarea{
+        width: 100% !important;
+
+    }
+
+    .post-image #img-preview{
+        width: 100% !important;
+    }
+    
+    .imageName-container{
+        width: 100% !important;
+    }
+
+    #content {
+        width: 100% !important;
+        padding: 10px;
+    }
+
 }
