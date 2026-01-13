@@ -5,6 +5,7 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Arimo", sans-serif, Arial;
+    overflow: hidden;
 }
 
 *:focus{
@@ -145,7 +146,8 @@ body{
     gap: 12px;
 }
 
-#user-profile{
+#user-profile,
+#user-profile2 {
     width: 32px;
     height: 32px;
     border-radius: 50%;

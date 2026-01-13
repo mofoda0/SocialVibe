@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
   const currentUserJSON = localStorage.getItem("user");
   const userProfileImg = document.getElementById("user-profile");
+  const userProfileDesc = document.getElementById("user-profile2");
 
-  if (!currentUserJSON || !userProfileImg) return;
-
+  
   const currentUser = JSON.parse(currentUserJSON);
-
+  
+  if (!currentUserJSON || !userProfileImg || !userProfileDesc ) return;
   if (
     typeof currentUser.profile_image === "string" &&
     currentUser.profile_image.trim() !== ""
@@ -13,18 +14,24 @@ document.addEventListener("DOMContentLoaded", () => {
     userProfileImg.onerror = () => {
       userProfileImg.src = "images/after-login/homepage/blank-profile.png";
     };
+      userProfileDesc.onerror = () => {
+    userProfileDesc.src = "images/after-login/homepage/blank-profile.png";
+    };
+
     userProfileImg.src = currentUser.profile_image;
+    userProfileDesc.src = currentUser.profile_image;
   } else {
     userProfileImg.src = "images/after-login/homepage/blank-profile.png";
+    userProfileDesc.src = "images/after-login/hompage/blank-profile.png";
   }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("nav-menu");
-
   if (!hamburger || !navMenu) return;
-
+  
+  
   hamburger.addEventListener("click", (e) => {
     e.stopPropagation();
     hamburger.classList.toggle("open");
