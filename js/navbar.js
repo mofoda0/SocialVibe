@@ -11,18 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
     typeof currentUser.profile_image === "string" &&
     currentUser.profile_image.trim() !== ""
   ) {
-    userProfileImg.onerror = () => {
-      userProfileImg.src = "images/after-login/homepage/blank-profile.png";
-    };
-      userProfileDesc.onerror = () => {
-    userProfileDesc.src = "images/after-login/homepage/blank-profile.png";
-    };
-
     userProfileImg.src = currentUser.profile_image;
     userProfileDesc.src = currentUser.profile_image;
-  } else {
-    userProfileImg.src = "images/after-login/homepage/blank-profile.png";
-    userProfileDesc.src = "images/after-login/hompage/blank-profile.png";
   }
 });
 

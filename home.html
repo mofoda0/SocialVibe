@@ -22,7 +22,7 @@
                 <img class="notification-icon" src="images/after-login/navbar/notification-icon.svg" alt="notification icon">
             </button>
 
-            <img id="user-profile" class="non-active" src="images/after-login/homepage/blank-profile.png" alt="user profile" onclick="location.href='profile.html'">
+            <img id="user-profile" class="non-active" src="" alt="user profile" onclick="location.href='profile.html'" onerror="this.src='images/after-login/homepage/blank-profile.png'">
             <div class="btn-containor" id="nav-menu">
 
                 <button class="active navbar-btn" onclick="location.href='index.html'">
@@ -65,7 +65,7 @@
             </button>
             
             <div class="logout-profile">
-                <img id="user-profile2" class="non-active" src="images/after-login/homepage/blank-profile.png" alt="user profile" onclick="location.href='profile.html'">
+                <img id="user-profile2" class="non-active" src="" alt="user profile" onclick="location.href='profile.html'" onerror="this.src='images/after-login/homepage/blank-profile.png'">
                 <button id="logout-btn" class="active navbar-btn" onclick="logout()">
                     <img src="images/after-login/navbar/logout.svg">
                     <span>Log Out</span>
@@ -78,7 +78,7 @@
     <section id="uploud-posts">
             <div class="add-post">
 
-            <img class="pfp" src="">
+            <img class="pfp" src="" onclick="location.href='profile.html'">
 
             <div class="post-box">
                 <textarea id="post-textarea" placeholder="What's on your mind?"></textarea>
